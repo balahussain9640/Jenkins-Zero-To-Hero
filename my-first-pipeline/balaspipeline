@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from Git
+                git 'https://github.com/your-repository/hello-world.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Clean and compile the project
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                // Run the Java application
+                sh 'java -cp target/hello-world-1.0-SNAPSHOT.jar com.example.HelloWorld'
+            }
+        }
+    }
+}
